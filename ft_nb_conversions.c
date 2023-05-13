@@ -1,33 +1,16 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_conversions.c                                   :+:      :+:    :+:   */
+/*   ft_nb_conversions.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcosta-d <mcosta-d@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/13 02:11:54 by mcosta-d          #+#    #+#             */
-/*   Updated: 2023/05/13 16:36:49 by mcosta-d         ###   ########.fr       */
+/*   Created: 2023/05/13 17:53:31 by mcosta-d          #+#    #+#             */
+/*   Updated: 2023/05/13 17:57:16 by mcosta-d         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "ft_printf.h"
-
-/*1. Char conversion - %c - prints a single character*/
-void	ft_putchar(char c, int *i)
-{
-	*i += write(1, &c, 1);
-}
-
-/*2. String conversion - %s - Prints a string
-(as defined by the common C convention)*/
-void	ft_putstr(char *str, int *i)
-{
-	while (*str)
-	{
-		*i += write(1, str, 1);
-		str++;
-	}
-}
 
 /*3. Number conversion - %d - Prints a decimal (base 10) number
 %i - Prints an integer in base 10

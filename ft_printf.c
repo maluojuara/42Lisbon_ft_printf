@@ -6,7 +6,7 @@
 /*   By: mcosta-d <mcosta-d@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 15:55:51 by mcosta-d          #+#    #+#             */
-/*   Updated: 2023/05/13 17:03:15 by mcosta-d         ###   ########.fr       */
+/*   Updated: 2023/05/13 17:56:04 by mcosta-d         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -32,11 +32,10 @@ void	format_checker(char format, va_list *args, int *len)
 		ft_putchar('%', len);
 }
 
-
 int	ft_printf(const char *toprint, ...)
 {
 	va_list	args;
-	int	len;
+	int		len;
 
 	len = 0;
 	va_start(args, toprint);

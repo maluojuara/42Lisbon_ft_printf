@@ -6,7 +6,7 @@
 /*   By: mcosta-d <mcosta-d@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 13:48:32 by mcosta-d          #+#    #+#             */
-/*   Updated: 2023/05/13 16:53:55 by mcosta-d         ###   ########.fr       */
+/*   Updated: 2023/05/13 17:56:26 by mcosta-d         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -27,6 +27,5 @@ void	ft_puthexa_up(unsigned long nbr, int *i);
 void	ft_putadress(unsigned long nbr, int *i);
 void	format_checker(char format, va_list *args, int *len);
 int		ft_printf(const char *toprint, ...);
-
 
 #endif

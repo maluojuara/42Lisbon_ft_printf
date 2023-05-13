@@ -6,12 +6,12 @@
 #    By: mcosta-d <mcosta-d@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/13 17:07:37 by mcosta-d          #+#    #+#              #
-#    Updated: 2023/05/13 17:24:07 by mcosta-d         ###   ########.fr        #
+#    Updated: 2023/05/13 17:54:18 by mcosta-d         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 NAME = libftprintf.a
-FILES = ft_conversions.c ft_printf.c\
+FILES = ft_nb_conversions.c ft_char_conversions.c ft_printf.c\
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
