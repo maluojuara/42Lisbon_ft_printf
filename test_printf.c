@@ -1,9 +1,12 @@
-#include <stdio.h>
+#include "ft_printf.h"
 
 int main() {
 
-char *str = "\0";
-printf ("%s", str);
+  printf ("original: %%");
 
-  return 0;
+  printf ("\n--------------------\n");
+
+  ft_printf("mine: %%\n");
+
+  return (0);
 }

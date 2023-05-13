@@ -5,51 +5,52 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcosta-d <mcosta-d@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/13 02:11:54 by mcosta-d          #+#    #+#             */
-/*   Updated: 2023/05/13 02:56:36 by mcosta-d         ###   ########.fr       */
+/*   Created: 2023/05/13 15:55:51 by mcosta-d          #+#    #+#             */
+/*   Updated: 2023/05/13 17:03:15 by mcosta-d         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-// #include "ft_printf.h"
+#include "ft_printf.h"
 
-/*Conversions asked in the subjects*/
-
-/*1. Char conversion - %c - prints a single character*/
-void	putchar(char c, int *i)
+void	format_checker(char format, va_list *args, int *len)
 {
-	*i += write(1, &c, 1);
+	if (format == 'c')
+		ft_putchar(va_arg(*args, int), len);
+	if (format == 's')
+		ft_putstr(va_arg(*args, char *), len);
+	if (format == 'p')
+		ft_putadress(va_arg(*args, unsigned long), len);
+	if (format == 'd' || format == 'i')
+		ft_putnbr(va_arg(*args, int), len);
+	if (format == 'u')
+		ft_putnbr_unsigned(va_arg(*args, unsigned long), len);
+	if (format == 'x')
+		ft_puthexa_low(va_arg(*args, unsigned long), len);
+	if (format == 'X')
+		ft_puthexa_up(va_arg(*args, unsigned long), len);
+	if (format == '%')
+		ft_putchar('%', len);
 }
 
-/*2. String conversion - %s - Prints a string
-(as defined by the common C convention)*/
-void	putstr(char *str, int *i)
-{
-	while (*str)
-	{
-		*i += write(1, str, 1);
-		str++;
-	}
-}
 
-/*3. Number conversion - %d - Prints a decimal (base 10) number
-%i - Prints an integer in base 10
-Without modifiers, they are basically the same*/
-
-void	putnbr(long long int nbr, int *i)
+int	ft_printf(const char *toprint, ...)
 {
-	if (nbr < 0)
+	va_list	args;
+	int	len;
+
+	len = 0;
+	va_start(args, toprint);
+	while (*toprint)
 	{
-		nbr = -nbr;
-		*i += write(1, "-", 1);
+		if (*toprint != '%')
+			ft_putchar(*toprint, &len);
+		if (*toprint == '%' && *(toprint + 1) != '\0')
+		{
+			toprint++;
+			format_checker(*toprint, &args, &len);
+		}
+		toprint++;
 	}
-	if (nbr >= 10)
-	{
-		putnbr(nbr / 10, i);
-		putnbr(nbr % 10, i);
-	}
-	else
-	{
-		nbr += 48;
-		*i = write(1, &nbr, 1);
-	}
+	va_end(args);
+	return (len);
 }
