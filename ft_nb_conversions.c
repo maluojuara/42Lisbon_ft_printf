@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_nb_conversions.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcosta-d <mcosta-d@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/13 17:53:31 by mcosta-d          #+#    #+#             */
-/*   Updated: 2023/05/13 17:57:16 by mcosta-d         ###   ########.fr       */
+/*   Created: 2023/05/16 11:58:18 by mcosta-d          #+#    #+#             */
+/*   Updated: 2023/05/17 16:22:22 by mcosta-d         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "ft_printf.h"
 
@@ -31,14 +31,14 @@ void	ft_putnbr(long long int nbr, int *i)
 	else
 	{
 		nbr += 48;
-		*i = write(1, &nbr, 1);
+		*i += write(1, &nbr, 1);
 	}
 }
 
 /*4. Unsigned number conversion - %u - Prints an unsigned
 decimal (base 10) number.*/
 
-void	ft_putnbr_unsigned(unsigned long nbr, int *i)
+void	ft_putnbr_unsigned(unsigned int nbr, int *i)
 {
 	if (nbr >= 10)
 	{
@@ -48,14 +48,14 @@ void	ft_putnbr_unsigned(unsigned long nbr, int *i)
 	else
 	{
 		nbr += 48;
-		*i = write(1, &nbr, 1);
+		*i += write(1, &nbr, 1);
 	}
 }
 
 /*5. Hexadecimal lowercase - %x - Prints a number in
 hexadecimal (base 16) lowercase format.*/
 
-void	ft_puthexa_low(unsigned long nbr, int *i)
+void	ft_puthexa_low(unsigned int nbr, int *i)
 {
 	char	str[20];
 	int		index;
@@ -63,20 +63,23 @@ void	ft_puthexa_low(unsigned long nbr, int *i)
 	index = 0;
 	if (nbr == 0)
 		ft_putchar('0', i);
-	while (nbr != 0)
+	else
 	{
-		str[index] = "0123456789abcdef"[nbr % 16];
-		nbr /= 16;
-		index++;
+		while (nbr != 0)
+		{
+			str[index] = "0123456789abcdef"[nbr % 16];
+			nbr /= 16;
+			index++;
+		}
+		while (index--)
+			ft_putchar(str[index], i);
 	}
-	while (index--)
-		ft_putchar(str[index], i);
 }
 
 /*5. Hexadecimal uppercase - %X - Prints a number in
 hexadecimal (base 16) uppercase format.*/
 
-void	ft_puthexa_up(unsigned long nbr, int *i)
+void	ft_puthexa_up(unsigned int nbr, int *i)
 {
 	char	str[20];
 	int		index;
@@ -99,7 +102,13 @@ argument has to be printed in hexadecimal format.*/
 
 void	ft_putadress(unsigned long nbr, int *i)
 {
-	if (nbr == 0)
+	if (nbr == ULONG_MAX)
+		*i += write(1, "0xffffffffffffffff", 18);
+	else if ((long long)nbr == LONG_MIN)
+		*i += write(1, "0x8000000000000000", 18);
+	else if ((long long)nbr == LONG_MAX)
+		*i += write(1, "0x7fffffffffffffff", 18);
+	else if (nbr == 0)
 		ft_putstr("(nil)", i);
 	else
 	{
