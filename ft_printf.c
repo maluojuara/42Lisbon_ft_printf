@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcosta-d <mcosta-d@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: mcosta-d <mcosta-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 11:58:32 by mcosta-d          #+#    #+#             */
-/*   Updated: 2023/05/16 11:58:34 by mcosta-d         ###   ########.fr       */
+/*   Updated: 2023/05/23 22:41:36 by mcosta-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	format_checker(char format, va_list *args, int *len)
 {
 	if (format == 'c')
-		ft_putchar(va_arg(*args, int), len);
+		ft_putchar((char)va_arg(*args, int), len);
 	if (format == 's')
 		ft_putstr(va_arg(*args, char *), len);
 	if (format == 'p')
@@ -23,11 +23,11 @@ void	format_checker(char format, va_list *args, int *len)
 	if (format == 'd' || format == 'i')
 		ft_putnbr(va_arg(*args, int), len);
 	if (format == 'u')
-		ft_putnbr_unsigned(va_arg(*args, unsigned long), len);
+		ft_putnbr_unsigned(va_arg(*args, unsigned int), len);
 	if (format == 'x')
-		ft_puthexa_low(va_arg(*args, unsigned long), len);
+		ft_puthexa_low(va_arg(*args, unsigned int), len);
 	if (format == 'X')
-		ft_puthexa_up(va_arg(*args, unsigned long), len);
+		ft_puthexa_up(va_arg(*args, unsigned int), len);
 	if (format == '%')
 		ft_putchar('%', len);
 }
