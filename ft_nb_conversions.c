@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_nb_conversions.c                                :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: mcosta-d <mcosta-d@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 11:58:18 by mcosta-d          #+#    #+#             */
-/*   Updated: 2023/05/17 16:22:22 by mcosta-d         ###   ########.fr       */
+/*   Updated: 2023/05/31 19:11:19 by mcosta-d         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "ft_printf.h"
 
@@ -102,17 +102,25 @@ argument has to be printed in hexadecimal format.*/
 
 void	ft_putadress(unsigned long nbr, int *i)
 {
-	if (nbr == ULONG_MAX)
-		*i += write(1, "0xffffffffffffffff", 18);
-	else if ((long long)nbr == LONG_MIN)
-		*i += write(1, "0x8000000000000000", 18);
-	else if ((long long)nbr == LONG_MAX)
-		*i += write(1, "0x7fffffffffffffff", 18);
-	else if (nbr == 0)
+	char	str[20];
+	int		index;
+
+	index = 0;
+	if (nbr == 0)
+	{
 		ft_putstr("(nil)", i);
+		return ;
+	}
 	else
 	{
 		ft_putstr("0x", i);
-		ft_puthexa_low(nbr, i);
 	}
+	while (nbr != 0)
+	{
+		str[index] = "0123456789abcdef"[nbr % 16];
+		nbr /= 16;
+		index++;
+	}
+	while (index--)
+		ft_putchar(str[index], i);
 }
