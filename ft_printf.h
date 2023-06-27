@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcosta-d <mcosta-d@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: mcosta-d <mcosta-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 11:58:38 by mcosta-d          #+#    #+#             */
-/*   Updated: 2023/05/17 16:17:52 by mcosta-d         ###   ########.fr       */
+/*   Updated: 2023/06/27 22:41:01 by mcosta-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include <stdarg.h>
 # include <unistd.h>
-# include <stdarg.h>
 # include <stdio.h>
 # include <limits.h>
 
